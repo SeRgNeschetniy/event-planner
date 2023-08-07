@@ -10,7 +10,7 @@ export default function EventCreate() {
       <TitleWrapp>
         <Title title={"Create new event"} />
       </TitleWrapp>
-      <FormEvent />
+      <FormEvent type={"create"} />
     </>
   );
 }

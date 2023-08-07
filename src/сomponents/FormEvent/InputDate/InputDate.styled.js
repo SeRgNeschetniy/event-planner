@@ -40,3 +40,18 @@ export const ButtonIcon = styled.div`
     stroke: ${theme.colors.accent};
   }
 `;
+
+export const CalendarWrapp = styled.ul`
+  margin-top: 18px;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 100%;
+  padding: 0px 16px;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  box-shadow: rgba(166, 141, 174, 0.28) 2px 4px 9px 0px;
+  z-index: 2;
+`;

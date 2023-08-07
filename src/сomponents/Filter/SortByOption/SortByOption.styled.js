@@ -10,7 +10,7 @@ export const Button = styled.button`
   justify-content: space-between;
   align-items: center;
 
-  width: 170px;
+  width: ${(p) => (p.isOpen ? "170px" : "56px")};
 
   padding: 16px;
 
@@ -40,6 +40,10 @@ export const Button = styled.button`
   &:focus svg {
     stroke: ${theme.colors.accentHover};
   }
+
+  @media screen and (min-width: 768px) {
+    width: 170px;
+  }
 `;
 
 export const TextWrapp = styled.div`
@@ -52,7 +56,7 @@ export const TextWrapp = styled.div`
 export const List = styled.ul`
   position: absolute;
 
-  width: 158px;
+  width: 170px;
   top: 56px;
   left: 0;
 
@@ -68,6 +72,10 @@ export const List = styled.ul`
   border-bottom-right-radius: 8px;
 
   box-shadow: rgba(166, 141, 174, 0.28) 2px 4px 9px 0px;
+
+  @media screen and (min-width: 768px) {
+    width: 158px;
+  }
 `;
 
 export const Item = styled.li`

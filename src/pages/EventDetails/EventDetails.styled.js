@@ -3,8 +3,12 @@ import { priorityColors } from "styles/GlobalStyles";
 import { theme } from "styles/theme";
 
 export const Wrapp = styled.div`
-  width: 628px;
+  width: 100%;
   margin: 0 auto;
+
+  @media screen and (min-width: 1280px) {
+    width: 628px;
+  }
 `;
 
 export const TitleWrapp = styled.div`
@@ -31,7 +35,7 @@ export const Item = styled.div`
 
 export const ImageWrapp = styled.div`
   position: relative;
-  height: 272px;
+  height: 100%;
   width: 100%;
   overflow: hidden;
 
@@ -41,13 +45,21 @@ export const ImageWrapp = styled.div`
     object-fit: cover;
     border-radius: 8px;
   }
+
+  @media screen and (min-width: 768px) {
+    height: 272px;
+  }
 `;
 
 export const InfoWrapp = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 20px 34px 40px 10px;
+  padding: 24px 16px 40px 16px;
+
+  @media screen and (min-width: 768px) {
+    padding: 20px 34px 40px 10px;
+  }
 `;
 
 export const Description = styled.p`
@@ -59,6 +71,7 @@ export const Description = styled.p`
 
 export const BadgeWrapp = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
 `;
 
@@ -78,8 +91,11 @@ export const Badge = styled.div`
 export const ButtonWrapp = styled.div`
   display: flex;
   justify-content: flex-end;
-  gap: 16px;
-  transition: all ${theme.animation.cubicBezier};
+  gap: 24px;
+
+  @media screen and (min-width: 768px) {
+    gap: 16px;
+  }
 `;
 
 export const ButtonDelete = styled.a`
@@ -88,6 +104,7 @@ export const ButtonDelete = styled.a`
   color: ${theme.colors.white};
   background-color: ${theme.colors.accent};
   transition: ${theme.animation.cubicBezier};
+  text-align: center;
   cursor: pointer;
 
   font-size: 12px;
@@ -99,6 +116,10 @@ export const ButtonDelete = styled.a`
   &:focus {
     background-color: ${theme.colors.accentHover};
   }
+
+  @media screen and (max-width: 767.99px) {
+    width: 50%;
+  }
 `;
 
 export const ButtonEdit = styled.a`
@@ -108,6 +129,7 @@ export const ButtonEdit = styled.a`
   background-color: ${theme.colors.white};
   transition: ${theme.animation.cubicBezier};
   border: 1px solid ${theme.colors.accent};
+  text-align: center;
   cursor: pointer;
 
   font-size: 12px;
@@ -119,5 +141,9 @@ export const ButtonEdit = styled.a`
   &:focus {
     color: ${theme.colors.accentHover};
     border: 1px solid ${theme.colors.accentHover};
+  }
+
+  @media screen and (max-width: 767.99px) {
+    width: 50%;
   }
 `;

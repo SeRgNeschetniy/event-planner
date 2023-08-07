@@ -1,26 +1,20 @@
 import { useRef, useState } from "react";
-import { Error, FieldWrapp, Item, Label, List } from "../FormEvent.styled";
+import { Error, FieldWrapp, Label } from "../FormEvent.styled";
 import useOutsideClick from "hooks/useOutsideHook";
 import {
   ButtonIcon,
+  CalendarWrapp,
   Input,
   SelectHeader,
   TextWrapp,
-} from "./InputSelect.styled";
+} from "./InputDate.styled";
 import { IconDown, IconUp } from "helpers/icons";
+import { DayPicker } from "react-day-picker";
+import { format } from "date-fns";
+import "react-day-picker/dist/style.css";
 
-export const InputSelect = ({
-  field,
-  form,
-  options,
-  label,
-  meta,
-  ...props
-}) => {
-  const value = field.value
-    ? options.find((item) => item.value === field.value).name
-    : `Select ${label}`;
-  const [selectValue, setSelectValue] = useState(value);
+export const InputDate = ({ field, form, options, label, meta, ...props }) => {
+  const [selected, setSelected] = useState(field.value);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
 
@@ -34,11 +28,10 @@ export const InputSelect = ({
     setIsOpen((prev) => !prev);
   };
 
-  const onSelect = (obj) => {
-    setSelectValue(obj.name);
-    togglePopup();
-    form.setFieldValue(field.name, obj.value);
-  };
+  let footer = <p>Please pick a day.</p>;
+  if (selected) {
+    footer = <p>You picked {format(selected, "EEE")}.</p>;
+  }
 
   return (
     <FieldWrapp ref={ref}>
@@ -47,8 +40,8 @@ export const InputSelect = ({
       </Label>
       <SelectHeader>
         <Input onClick={togglePopup}>
-          <TextWrapp $select={selectValue}>
-            {!isOpen && <>{selectValue ? selectValue : `Select ${label}`}</>}
+          <TextWrapp $select={selected}>
+            {!isOpen && <>{selected ? selected : `Select ${label}`}</>}
             {isOpen && `Select ${label}`}
           </TextWrapp>
 
@@ -65,20 +58,15 @@ export const InputSelect = ({
       </SelectHeader>
 
       {isOpen && (
-        <List>
-          {options.map((item, index) => {
-            return (
-              <Item
-                onClick={() => {
-                  onSelect(item);
-                }}
-                key={index}
-              >
-                {item.name}
-              </Item>
-            );
-          })}
-        </List>
+        <CalendarWrapp>
+          <DayPicker
+            defaultMonth={new Date(2022, 8)}
+            mode="single"
+            selected={selected}
+            onSelect={setSelected}
+            footer={footer}
+          />
+        </CalendarWrapp>
       )}
 
       <Error name={label} component="div" />

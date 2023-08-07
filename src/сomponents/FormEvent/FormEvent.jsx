@@ -1,4 +1,4 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Field } from "formik";
 import {
   Button,
   ButtonClear,
@@ -14,10 +14,10 @@ import {
 import { createEvent, editEvent, getEventById } from "API/API";
 import { uploadImageToServer } from "API/uploadImageToServer";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { InputSelect } from "./InputSelect/InputSelect";
-import { categories, priorities } from "data/variables";
-import * as Yup from "yup";
+import { categories, priorities } from "helpers/variables";
+import { InputDate } from "./InputDate/InputDate";
 
 const IconClear = () => {
   return (
@@ -38,9 +38,10 @@ const IconClear = () => {
   );
 };
 
-export const FormEvent = () => {
-  const location = useLocation();
+export const FormEvent = ({ type }) => {
   const navigate = useNavigate();
+  const toHome = () => navigate("/");
+
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -55,8 +56,6 @@ export const FormEvent = () => {
     img: "",
     priority: "",
   });
-
-  const [showCategories, setShowCategories] = useState(false);
 
   useEffect(() => {
     if (!id) {
@@ -82,17 +81,6 @@ export const FormEvent = () => {
   };
 
   console.log(initialValues);
-
-  // const validationSchema = Yup.object({
-  //   title: Yup.string().required(),
-  //   description: Yup.string().required(),
-  //   date: Yup.string().required(),
-  //   time: Yup.string().required(),
-  //   location: Yup.string().required(),
-  //   category: Yup.string().required(),
-  //   img: Yup.string().url(),
-  //   priority: Yup.number().required(),
-  // });
 
   return (
     !isLoading && (
@@ -123,23 +111,30 @@ export const FormEvent = () => {
 
           return errors;
         }}
-        onSubmit={(values, { setSubmitting, setFieldValue }) => {
+        onSubmit={(values, { setSubmitting, resetForm }) => {
           setTimeout(() => {
-            console.log("values----", values);
+            if (type === "create") {
+              (async () => {
+                const uploadImage = await uploadImageToServer(
+                  "Events",
+                  URL.createObjectURL(image)
+                );
+                values.img = uploadImage;
+                await createEvent(values).finally(() => {
+                  resetForm();
+                  toHome();
+                });
+              })();
+            }
 
-            // (async () => {
-            //   const uploadImage = await uploadImageToServer(
-            //     "Events",
-            //     URL.createObjectURL(image)
-            //   );
-            //   values.img = uploadImage;
-            //   //setFieldValue("img", uploadImage);
-            //   await createEvent(values);
-            // })();
-
-            (async () => {
-              await editEvent(id, values);
-            })();
+            if (type === "edit") {
+              (async () => {
+                await editEvent(id, values).finally(() => {
+                  resetForm();
+                  toHome();
+                });
+              })();
+            }
 
             setSubmitting(false);
           }, 400);
@@ -194,11 +189,23 @@ export const FormEvent = () => {
                 </ButtonClear>
                 <Error name="description" component="div" />
               </FieldWrapp>
-              <FieldWrapp>
+              {/* <FieldWrapp>
                 <Label htmlFor="date">Select date</Label>
                 <Input type="date" name="date" />
                 <Error name="date" id="date" component="div" />
-              </FieldWrapp>
+              </FieldWrapp> */}
+
+              <Field name="date">
+                {({ field, form, meta }) => (
+                  <InputDate
+                    field={field}
+                    form={form}
+                    meta={meta}
+                    label={"Date"}
+                  />
+                )}
+              </Field>
+
               <FieldWrapp>
                 <Label htmlFor="time">Select time</Label>
                 <Input type="time" id="time" name="time" />
@@ -217,28 +224,6 @@ export const FormEvent = () => {
                 </ButtonClear>
                 <Error name="location" component="div" />
               </FieldWrapp>
-
-              {/* <FieldWrapp>
-              <Label htmlFor="category">Category</Label>
-              <Select
-                name="category"
-                id="category"
-                value={values.category}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              >
-                <option value=""></option>
-                <option value="Art">Art</option>
-                <option value="Music">Music</option>
-                <option value="Business">Business</option>
-                <option value="Conference">Conference</option>
-                <option value="Workshop">Workshop</option>
-                <option value="Party">Party</option>
-                <option value="Sport">Sport</option>
-              </Select>
-
-              <Error name="category" component="div" />
-            </FieldWrapp> */}
 
               <Field name="category">
                 {({ field, form, meta }) => (
@@ -276,29 +261,11 @@ export const FormEvent = () => {
                   />
                 )}
               </Field>
-
-              {/* <FieldWrapp>
-              <Label htmlFor="priority">Priority</Label>
-              <Select
-                name="priority"
-                id="priority"
-                value={values.priority}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              >
-                <option value=""></option>
-                <option value="High" selected>
-                  High
-                </option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
-              </Select>
-              <Error name="priority" component="div" />
-            </FieldWrapp> */}
             </FormBody>
             <FormFooter>
               <Button type="submit" disabled={isSubmitting}>
-                Add event
+                {type === "create" && "Add event"}
+                {type === "edit" && "Save"}
               </Button>
             </FormFooter>
           </FormWrapp>

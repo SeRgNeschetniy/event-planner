@@ -13,40 +13,19 @@ import {
 } from "./Event.styled";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import placeholder from "images/placeholder.svg";
-import { useNavigate } from "react-router-dom";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import { priorities } from "helpers/variables";
 
-export const EventCard = ({ event }) => {
-  const {
-    id,
-    title,
-    description,
-    date,
-    time,
-    location,
-    category,
-    img,
-    priority,
-  } = event;
-
-  const navigate = useNavigate();
-  const toEvent = () => navigate(`/event/${id}`);
-
-  const priorityItem = priorities.find((item) => item.value === priority);
+export const Event = ({ event }) => {
+  const { title, description, date, time, location, category, img, priority } =
+    event;
 
   return (
     <Item>
       <ImageWrapp>
-        <LazyLoadImage
-          alt={title}
-          effect="blur"
-          src={img ? img : placeholder}
-        />
         <BadgeWrapp>
           <Badge>{category}</Badge>
-          <Badge priority={priorityItem?.name}>{priorityItem?.name}</Badge>
+          <Badge>{priority}</Badge>
         </BadgeWrapp>
+        <LazyLoadImage alt={title} src={img ? img : placeholder} />
         <DateTimeLocationWrapp>
           <DateTimeLocationItem>
             {date} at {time}
@@ -58,8 +37,8 @@ export const EventCard = ({ event }) => {
         <Title>{title}</Title>
         <Description>{description}</Description>
       </InfoWrapp>
-      <ButtonWrapp>
-        <ButtonMoreInfo onClick={toEvent}>More info</ButtonMoreInfo>
+      <ButtonWrapp className="button-wrapp">
+        <ButtonMoreInfo>More info</ButtonMoreInfo>
       </ButtonWrapp>
     </Item>
   );

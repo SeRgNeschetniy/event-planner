@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCategory } from "redux/category/slice";
 import { selectCategory } from "redux/category/selectors";
 import useOutsideClick from "hooks/useOutsideHook";
+import { IconFilter } from "helpers/icons";
+import useMedia from "hooks/useMedia";
 
 const CATEGORY = [
   "All",
@@ -22,6 +24,7 @@ const CATEGORY = [
 ];
 
 export const FilterByCaregory = () => {
+  const { isMobile } = useMedia();
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
 
@@ -47,21 +50,9 @@ export const FilterByCaregory = () => {
   return (
     <Wrapp>
       <Button onClick={handleButtonClick} isOpen={isOpen}>
-        {selectedCategory}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <path
-            d="M4 4L9 12V18L15 21V12L20 4H4Z"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
+        {isMobile && isOpen && selectedCategory}
+        {!isMobile && selectedCategory}
+        <IconFilter />
       </Button>
       {isOpen && (
         <CategoryList ref={ref} isOpen={isOpen}>

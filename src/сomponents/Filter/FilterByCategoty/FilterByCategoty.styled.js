@@ -6,11 +6,11 @@ export const Wrapp = styled.div`
 `;
 
 export const Button = styled.button`
+  width: ${(p) => (p.isOpen ? "158px" : "56px")};
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  width: 158px;
 
   padding: 16px;
 
@@ -39,6 +39,10 @@ export const Button = styled.button`
   &:hover svg,
   &:focus svg {
     stroke: ${theme.colors.accentHover};
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 158px;
   }
 `;
 

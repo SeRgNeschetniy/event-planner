@@ -3,10 +3,14 @@ import { Field, ErrorMessage, Form } from "formik";
 import { theme } from "styles/theme";
 
 export const FormWrapp = styled(Form)`
-  padding: 40px 40px 54px 40px;
+  padding: 40px 16px;
   border-radius: 8px;
   background: ${theme.colors.white};
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+
+  @media screen and (min-width: 1280px) {
+    padding: 40px 40px 54px 40px;
+  }
 `;
 
 export const FormBody = styled.div`
@@ -15,9 +19,16 @@ export const FormBody = styled.div`
   column-gap: 42px;
   row-gap: 20px;
   flex-wrap: wrap;
-  max-height: 320px;
 
   margin-bottom: 60px;
+
+  @media screen and (min-width: 768px) {
+    max-height: 480px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-height: 320px;
+  }
 `;
 export const FormFooter = styled.div`
   display: flex;
@@ -32,6 +43,8 @@ export const FieldWrapp = styled.div`
 `;
 
 export const Input = styled(Field)`
+  width: 100%;
+
   padding: 15px 12px;
   border-radius: 8px;
   border: 1px solid ${theme.colors.divider};
@@ -45,6 +58,14 @@ export const Input = styled(Field)`
 
   &::file-selector-button {
     display: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 308px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 372px;
   }
 `;
 
@@ -115,6 +136,10 @@ export const Button = styled.button`
   &:focus {
     background-color: ${theme.colors.accentHover};
   }
+
+  @media screen and (max-width: 767.99px) {
+    width: 100%;
+  }
 `;
 
 export const ButtonClear = styled.button`
@@ -123,7 +148,6 @@ export const ButtonClear = styled.button`
   height: 24px;
   top: 40px;
   right: 12px;
-  z-index: 10;
 
   svg {
     stroke: ${theme.colors.accent};

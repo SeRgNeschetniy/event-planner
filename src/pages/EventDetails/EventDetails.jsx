@@ -19,7 +19,7 @@ import { GoBack } from "сomponents/Button/GoBack/GoBack";
 
 import { deleteEvent, getEventById } from "API/API";
 import { Title } from "сomponents/Title/Title";
-import { priorities } from "data/variables";
+import { priorities } from "helpers/variables";
 
 export default function EventDetails() {
   const { id } = useParams();
@@ -53,8 +53,9 @@ export default function EventDetails() {
 
   const handleClickDelete = async (id) => {
     try {
-      await deleteEvent(id);
-      toHome();
+      await deleteEvent(id).finally(() => {
+        toHome();
+      });
     } catch (error) {
       console.log(error);
     }

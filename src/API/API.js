@@ -3,23 +3,16 @@ import {
   collection,
   deleteDoc,
   doc,
-  endAt,
-  getCountFromServer,
   getDoc,
   getDocs,
-  limit,
   orderBy,
   query,
-  startAt,
   updateDoc,
   where,
 } from "firebase/firestore";
 import { db } from "./config";
 
-export const getAllEvents = async (filter, sortBy, itemOffset, endOffset) => {
-  console.log(itemOffset);
-  console.log(endOffset);
-
+export const getAllEvents = async (filter, sortBy) => {
   const q = query(
     collection(db, "Events"),
     filter !== "All" ? where("category", "==", filter) : "",
@@ -32,17 +25,7 @@ export const getAllEvents = async (filter, sortBy, itemOffset, endOffset) => {
     arr.push({ ...doc.data(), id: doc.id });
   });
 
-  console.log("arr====>", querySnapshot);
-
-  const qCount = query(
-    collection(db, "Events"),
-    filter !== "All" ? where("category", "==", filter) : "",
-    orderBy(sortBy.type, sortBy.order)
-  );
-  const snapshotCount = await getCountFromServer(qCount);
-  const total = snapshotCount.data().count;
-
-  return { events: arr, total: total };
+  return { events: arr };
 };
 
 export const getEventById = async (id) => {

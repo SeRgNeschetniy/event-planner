@@ -6,7 +6,7 @@ const sortByOptionSlice = createSlice({
     label: "Sort by data",
     text: "Date",
     type: "date",
-    order: "desc",
+    order: "asc",
   },
   reducers: {
     setSortByOption: (_, { payload }) => payload,

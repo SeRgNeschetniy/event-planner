@@ -7,7 +7,7 @@ import { ReactComponent as CrossIcon } from "images/cross-small.svg";
 import useDebounce from "hooks/useDebounce";
 import { setSearch } from "redux/search/slice";
 
-export const Search = (props) => {
+export const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedSearch = useDebounce(searchQuery, 500);
 

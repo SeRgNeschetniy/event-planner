@@ -3,8 +3,9 @@ import { priorityColors } from "styles/GlobalStyles";
 import { theme } from "styles/theme";
 
 export const Item = styled.div`
-  width: 302px;
+  width: 271px;
   height: 480px;
+
   position: relative;
   display: flex;
   flex-direction: column;
@@ -12,6 +13,15 @@ export const Item = styled.div`
   border-radius: 12px;
   background: ${theme.colors.white};
   transition: all ${theme.animation.cubicBezier};
+
+  @media screen and (min-width: 768px) {
+    width: 332px;
+    height: 480px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 302px;
+    height: 480px;
+  }
 `;
 
 export const ImageWrapp = styled.div`
