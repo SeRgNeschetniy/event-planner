@@ -1,16 +1,19 @@
 import { Container } from "styles/GlobalStyles";
-import { Header, Logo } from "./AppBar.styled";
+import { Header, HeaderWrapp, Logo } from "./AppBar.styled";
+import { Search } from "сomponents/Search/Search";
 
 export const AppBar = () => {
+  const onSearch = (searchQuery) => {
+    console.log(searchQuery);
+  };
+
   return (
     <Header>
       <Container>
-        <Logo>
-          <span role="img" aria-label="computer icon">
-            💻
-          </span>{" "}
-          GoMerch Store
-        </Logo>
+        <HeaderWrapp>
+          <Logo />
+          <Search onSearch={onSearch} />
+        </HeaderWrapp>
       </Container>
     </Header>
   );

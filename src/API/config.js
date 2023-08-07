@@ -7,12 +7,12 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBPxfuAiJ6p67V9j8LzUJQIm6BMI3LLXOE",
-  authDomain: "event-planner-5d60c.firebaseapp.com",
-  projectId: "event-planner-5d60c",
-  storageBucket: "event-planner-5d60c.appspot.com",
-  messagingSenderId: "667394386941",
-  appId: "1:667394386941:web:5334b4b110958336800794",
+  apiKey: "AIzaSyBdpcOY5mPG2GwcYiJTEaY0C8kwhU1wxFs",
+  authDomain: "eventplanner-ef473.firebaseapp.com",
+  projectId: "eventplanner-ef473",
+  storageBucket: "eventplanner-ef473.appspot.com",
+  messagingSenderId: "936652121085",
+  appId: "1:936652121085:web:f6d5e85b3f6ab5b4982f94",
 };
 
 // Initialize Firebase
