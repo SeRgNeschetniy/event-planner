@@ -29,3 +29,8 @@ export const ListItem = styled.li`
   border-radius: 12px;
   list-style-type: none;
 `;
+
+export const ReactPaginateWrapp = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;

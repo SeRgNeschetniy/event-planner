@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const sortByOptionSlice = createSlice({
   name: "sortByOption",
   initialState: {
+    label: "Sort by data",
     text: "Date",
     type: "date",
     order: "desc",

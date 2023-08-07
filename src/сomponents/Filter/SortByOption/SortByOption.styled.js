@@ -10,7 +10,7 @@ export const Button = styled.button`
   justify-content: space-between;
   align-items: center;
 
-  width: 158px;
+  width: 170px;
 
   padding: 16px;
 

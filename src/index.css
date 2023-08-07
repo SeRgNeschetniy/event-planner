@@ -80,7 +80,7 @@ input {
   box-sizing: border-box;
 }
 
-h1,
+/* h1,
 h2,
 h3,
 h4,
@@ -119,4 +119,66 @@ input {
   font: inherit;
   cursor: pointer;
   outline: inherit;
+} */
+
+.pagination {
+  display: inline-flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  padding: 10px;
+  margin-top: 32px;
+  margin-bottom: 80px;
+  list-style: none;
+
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+}
+
+.page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  text-decoration: none;
+
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+
+  text-align: center;
+  box-sizing: border-box;
+  min-width: 64px;
+  height: 64px;
+
+  color: #aca7c3;
+
+  :hover,
+  :focus {
+    color: #7b61ff;
+  }
+}
+.pagination__link--active .page-link {
+  color: #7b61ff;
+}
+.pagination__link {
+  margin: 0 10px;
+  font-size: 1.875rem;
+  line-height: 1.43;
+  cursor: pointer;
 }
