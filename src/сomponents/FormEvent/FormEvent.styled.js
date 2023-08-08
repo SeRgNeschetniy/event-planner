@@ -43,7 +43,7 @@ export const FieldWrapp = styled.div`
 `;
 
 export const Input = styled(Field)`
-  width: 100%;
+  width: 240px;
 
   padding: 15px 12px;
   border-radius: 8px;
@@ -82,6 +82,16 @@ export const Textarea = styled(Field)`
   line-height: 24px;
 
   resize: none;
+
+  width: 240px;
+
+  @media screen and (min-width: 768px) {
+    width: 308px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 372px;
+  }
 `;
 
 export const Error = styled(ErrorMessage)`

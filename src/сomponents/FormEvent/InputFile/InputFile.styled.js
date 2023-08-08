@@ -22,6 +22,16 @@ export const Input = styled.div`
   &:focus {
     border-color: ${theme.colors.accent};
   }
+
+  width: 240px;
+
+  @media screen and (min-width: 768px) {
+    width: 308px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 372px;
+  }
 `;
 
 export const TextWrapp = styled.div`

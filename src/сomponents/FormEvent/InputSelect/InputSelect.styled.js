@@ -5,7 +5,6 @@ export const Input = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
   padding: 12px 16px;
   height: 56px;
   outline: none;
@@ -21,6 +20,16 @@ export const Input = styled.div`
 
   &:focus {
     border-color: ${theme.colors.accent};
+  }
+
+  width: 240px;
+
+  @media screen and (min-width: 768px) {
+    width: 308px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 372px;
   }
 `;
 
