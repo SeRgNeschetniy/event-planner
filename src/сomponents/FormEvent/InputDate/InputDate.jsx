@@ -13,7 +13,7 @@ import {
 } from "./InputDate.styled";
 import { IconDown, IconUp } from "helpers/icons";
 import { DayPicker } from "react-day-picker";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 //import "react-day-picker/dist/style.css";
 import styles from "./InputDate.module.css";
 
