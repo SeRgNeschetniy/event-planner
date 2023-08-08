@@ -8,6 +8,10 @@ export const FormWrapp = styled(Form)`
   background: ${theme.colors.white};
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
 
+  @media screen and (min-width: 768px) {
+    padding: 40px 24px 40px 24px;
+  }
+
   @media screen and (min-width: 1280px) {
     padding: 40px 40px 54px 40px;
   }
@@ -16,7 +20,6 @@ export const FormWrapp = styled(Form)`
 export const FormBody = styled.div`
   display: flex;
   flex-direction: column;
-  column-gap: 42px;
   row-gap: 20px;
   flex-wrap: wrap;
 
@@ -24,10 +27,12 @@ export const FormBody = styled.div`
 
   @media screen and (min-width: 768px) {
     max-height: 480px;
+    column-gap: 24px;
   }
 
   @media screen and (min-width: 1280px) {
     max-height: 320px;
+    column-gap: 42px;
   }
 `;
 export const FormFooter = styled.div`
