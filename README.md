@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Event Planner App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Elevate your event planning experience with our user-friendly Event Planner app
 
 ## Available Scripts
 
