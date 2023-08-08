@@ -19,6 +19,7 @@ export const TitleWrapp = styled.div`
 `;
 
 export const ButtonWrapp = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   gap: 24px;

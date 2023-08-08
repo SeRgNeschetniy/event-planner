@@ -48,7 +48,7 @@ export const FilterByCaregory = () => {
   };
 
   return (
-    <Wrapp>
+    <Wrapp isOpen={isOpen}>
       <Button onClick={handleButtonClick} isOpen={isOpen}>
         {isMobile && isOpen && selectedCategory}
         {!isMobile && selectedCategory}

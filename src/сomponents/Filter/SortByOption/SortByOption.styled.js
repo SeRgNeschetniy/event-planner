@@ -1,8 +1,19 @@
-import styled from "styled-components";
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 import { theme } from "styles/theme";
 
 export const Wrapp = styled.div`
   position: relative;
+
+  ${(p) =>
+    p.isOpen &&
+    css`
+      @media screen and (max-width: 767px) {
+        position: absolute;
+        z-index: 10;
+        right: 0;
+      }
+    `}
 `;
 
 export const Button = styled.button`

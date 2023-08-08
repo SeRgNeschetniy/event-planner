@@ -5,7 +5,7 @@ export const Input = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 372px;
   padding: 12px 16px;
   height: 56px;
   outline: none;

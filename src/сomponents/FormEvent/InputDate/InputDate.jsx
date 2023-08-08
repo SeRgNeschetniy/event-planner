@@ -2,7 +2,10 @@ import { useRef, useState } from "react";
 import { Error, FieldWrapp, Label } from "../FormEvent.styled";
 import useOutsideClick from "hooks/useOutsideHook";
 import {
+  ButtonCancel,
+  ButtonChoose,
   ButtonIcon,
+  ButtonWrapp,
   CalendarWrapp,
   Input,
   SelectHeader,
@@ -10,11 +13,16 @@ import {
 } from "./InputDate.styled";
 import { IconDown, IconUp } from "helpers/icons";
 import { DayPicker } from "react-day-picker";
-import { format } from "date-fns";
-import "react-day-picker/dist/style.css";
+import { format, parseISO } from "date-fns";
+//import "react-day-picker/dist/style.css";
+import styles from "./InputDate.module.css";
 
 export const InputDate = ({ field, form, options, label, meta, ...props }) => {
-  const [selected, setSelected] = useState(field.value);
+  const formValue = field.value ? new Date(field.value) : null;
+
+  const [value, setValue] = useState(formValue);
+  const [selected, setSelected] = useState(formValue);
+
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
 
@@ -28,10 +36,34 @@ export const InputDate = ({ field, form, options, label, meta, ...props }) => {
     setIsOpen((prev) => !prev);
   };
 
-  let footer = <p>Please pick a day.</p>;
-  if (selected) {
-    footer = <p>You picked {format(selected, "EEE")}.</p>;
-  }
+  const handleSelectDate = () => {
+    setValue(selected);
+    form.setFieldValue(field.name, format(selected, "dd/MM/yyyy"));
+    setIsOpen((prev) => !prev);
+  };
+
+  const classNames = {
+    caption: styles.caption,
+    caption_label: styles.month,
+    nav: styles.nav,
+    nav_button: styles.navBtn,
+    nav_icon: styles.navIcon,
+    table: styles.table,
+    head: styles.head,
+    head_cell: styles.dayOfWeek,
+    row: styles.row,
+    cell: styles.cell,
+    day: styles.calendarDay,
+    day_today: styles.today,
+    day_selected: styles.selected,
+  };
+
+  const footer = (
+    <ButtonWrapp>
+      <ButtonCancel onClick={togglePopup}>Cancel</ButtonCancel>
+      <ButtonChoose onClick={handleSelectDate}>Choose date</ButtonChoose>
+    </ButtonWrapp>
+  );
 
   return (
     <FieldWrapp ref={ref}>
@@ -41,7 +73,9 @@ export const InputDate = ({ field, form, options, label, meta, ...props }) => {
       <SelectHeader>
         <Input onClick={togglePopup}>
           <TextWrapp $select={selected}>
-            {!isOpen && <>{selected ? selected : `Select ${label}`}</>}
+            {!isOpen && (
+              <>{value ? format(value, "dd/MM/yyyy") : `Select ${label}`}</>
+            )}
             {isOpen && `Select ${label}`}
           </TextWrapp>
 
@@ -60,11 +94,12 @@ export const InputDate = ({ field, form, options, label, meta, ...props }) => {
       {isOpen && (
         <CalendarWrapp>
           <DayPicker
-            defaultMonth={new Date(2022, 8)}
+            defaultMonth={new Date()}
             mode="single"
             selected={selected}
             onSelect={setSelected}
             footer={footer}
+            classNames={classNames}
           />
         </CalendarWrapp>
       )}

@@ -20,22 +20,23 @@ import { GoBack } from "сomponents/Button/GoBack/GoBack";
 import { deleteEvent, getEventById } from "API/API";
 import { Title } from "сomponents/Title/Title";
 import { priorities } from "helpers/variables";
+import { format } from "date-fns";
 
 export default function EventDetails() {
   const { id } = useParams();
-  const [event, setEvent] = useState([]);
+  const [event, setEvent] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
   const toHome = () => navigate("/");
   const toEditEvent = () => navigate(`/event/edit/${id}`);
 
-  const { title, description, date, time, location, category, img, priority } =
-    event;
-
   useEffect(() => {
+    if (!id) return;
+
     try {
       setIsLoading(true);
+
       const fetchEvent = async () => {
         try {
           const result = await getEventById(id);
@@ -61,11 +62,21 @@ export default function EventDetails() {
     }
   };
 
+  const { title, description, date, time, location, category, img, priority } =
+    event;
+
   const priorityItem = priorities.find((item) => item.value === priority);
 
   return (
     <>
       <GoBack />
+      {!event && (
+        <div>
+          воыасфылва рфывало рфывоарфывла рфлывоар фыловар флвоыра фловыра лфоыв
+          рлфо
+        </div>
+      )}
+
       {!isLoading && event && (
         <Wrapp>
           <TitleWrapp>

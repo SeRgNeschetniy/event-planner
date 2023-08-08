@@ -49,6 +49,7 @@ export const EventCard = ({ event }) => {
         </BadgeWrapp>
         <DateTimeLocationWrapp>
           <DateTimeLocationItem>
+            {/* {format(new Date(date), "dd.MM")} */}
             {date} at {time}
           </DateTimeLocationItem>
           <DateTimeLocationItem>{location}</DateTimeLocationItem>

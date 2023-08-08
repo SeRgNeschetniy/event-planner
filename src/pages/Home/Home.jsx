@@ -13,8 +13,10 @@ export default function Home() {
       <TitleWrapp>
         {isDesktop && <Title title="My events" />}
         <ButtonWrapp>
-          <FilterByCaregory />
-          <SortByOption />
+          <ButtonWrapp>
+            <FilterByCaregory />
+            <SortByOption />
+          </ButtonWrapp>
           <CreateEvent />
         </ButtonWrapp>
       </TitleWrapp>

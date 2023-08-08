@@ -18,6 +18,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { InputSelect } from "./InputSelect/InputSelect";
 import { categories, priorities } from "helpers/variables";
 import { InputDate } from "./InputDate/InputDate";
+import { InputTime } from "./InputTime/InputTime";
+import { InputFile } from "./InputFile/InputFile";
 
 const IconClear = () => {
   return (
@@ -80,6 +82,10 @@ export const FormEvent = ({ type }) => {
     ...event,
   };
 
+  const onFile = (file) => {
+    setImage(file);
+  };
+
   console.log(initialValues);
 
   return (
@@ -113,6 +119,8 @@ export const FormEvent = ({ type }) => {
         }}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           setTimeout(() => {
+            console.log("values------", values);
+
             if (type === "create") {
               (async () => {
                 const uploadImage = await uploadImageToServer(
@@ -129,6 +137,8 @@ export const FormEvent = ({ type }) => {
 
             if (type === "edit") {
               (async () => {
+                console.log("values---", values);
+
                 await editEvent(id, values).finally(() => {
                   resetForm();
                   toHome();
@@ -189,13 +199,8 @@ export const FormEvent = ({ type }) => {
                 </ButtonClear>
                 <Error name="description" component="div" />
               </FieldWrapp>
-              {/* <FieldWrapp>
-                <Label htmlFor="date">Select date</Label>
-                <Input type="date" name="date" />
-                <Error name="date" id="date" component="div" />
-              </FieldWrapp> */}
 
-              <Field name="date">
+              <Field name="date" id="date">
                 {({ field, form, meta }) => (
                   <InputDate
                     field={field}
@@ -211,6 +216,18 @@ export const FormEvent = ({ type }) => {
                 <Input type="time" id="time" name="time" />
                 <Error name="time" component="div" />
               </FieldWrapp>
+
+              {/* <Field name="time">
+                {({ field, form, meta }) => (
+                  <InputTime
+                    field={field}
+                    form={form}
+                    meta={meta}
+                    label={"Time"}
+                  />
+                )}
+              </Field> */}
+
               <FieldWrapp>
                 <Label htmlFor="location">Location</Label>
                 <Input name="location" id="location" />
@@ -237,7 +254,7 @@ export const FormEvent = ({ type }) => {
                 )}
               </Field>
 
-              <FieldWrapp>
+              {/* <FieldWrapp>
                 <Label htmlFor="file">Add file</Label>
                 <Input
                   type="file"
@@ -248,7 +265,29 @@ export const FormEvent = ({ type }) => {
                   }}
                 />
                 <Error name="file" component="div" />
-              </FieldWrapp>
+              </FieldWrapp> */}
+
+              {type === "create" && (
+                <Field name="file">
+                  {({ field, form, meta }) => (
+                    <InputFile
+                      field={field}
+                      form={form}
+                      meta={meta}
+                      label={"File"}
+                      onFile={onFile}
+                    />
+                  )}
+                </Field>
+              )}
+
+              {type === "edit" && (
+                <FieldWrapp>
+                  <Label htmlFor="file">Add file</Label>
+                  <Input name="img" id="img" value={values.img} disabled />
+                  <Error name="img" component="div" />
+                </FieldWrapp>
+              )}
 
               <Field name="priority">
                 {({ field, form, meta }) => (

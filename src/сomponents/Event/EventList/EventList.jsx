@@ -29,7 +29,6 @@ export const EventList = () => {
         const result = events?.filter((item) => {
           return item.title.toUpperCase().includes(search.toUpperCase());
         });
-
         setEvents(result);
       } else {
         setEvents(events);

@@ -33,7 +33,7 @@ export const SortByOption = () => {
   };
 
   return (
-    <Wrapp>
+    <Wrapp isOpen={isOpen}>
       <Button onClick={handleButtonClick} isOpen={isOpen}>
         {!isMobile && (
           <>
