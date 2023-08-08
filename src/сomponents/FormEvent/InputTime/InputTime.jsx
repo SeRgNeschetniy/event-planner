@@ -16,7 +16,7 @@ export const InputTime = ({ field, form, options, label, meta, ...props }) => {
   // const formValue = field.value ? field.value : null;
 
   //const [value, setValue] = useState(formValue);
-  const [selected, setSelected] = useState("");
+  const selected = useState("");
 
   const [value, setValue] = useState("10:00");
 

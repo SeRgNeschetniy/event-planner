@@ -18,7 +18,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { InputSelect } from "./InputSelect/InputSelect";
 import { categories, priorities } from "helpers/variables";
 import { InputDate } from "./InputDate/InputDate";
-import { InputTime } from "./InputTime/InputTime";
 import { InputFile } from "./InputFile/InputFile";
 
 const IconClear = () => {

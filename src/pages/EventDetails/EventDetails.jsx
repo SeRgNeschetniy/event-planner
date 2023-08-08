@@ -20,7 +20,6 @@ import { GoBack } from "сomponents/Button/GoBack/GoBack";
 import { deleteEvent, getEventById } from "API/API";
 import { Title } from "сomponents/Title/Title";
 import { priorities } from "helpers/variables";
-import { format } from "date-fns";
 
 export default function EventDetails() {
   const { id } = useParams();
