@@ -20,6 +20,7 @@ import { GoBack } from "сomponents/Button/GoBack/GoBack";
 import { deleteEvent, getEventById } from "API/API";
 import { Title } from "сomponents/Title/Title";
 import { priorities } from "helpers/variables";
+import { Loader } from "сomponents/Loader/Loader";
 
 export default function EventDetails() {
   const { id } = useParams();
@@ -69,13 +70,7 @@ export default function EventDetails() {
   return (
     <>
       <GoBack />
-      {!event && (
-        <div>
-          воыасфылва рфывало рфывоарфывла рфлывоар фыловар флвоыра фловыра лфоыв
-          рлфо
-        </div>
-      )}
-
+      {isLoading && <Loader />}
       {!isLoading && event && (
         <Wrapp>
           <TitleWrapp>

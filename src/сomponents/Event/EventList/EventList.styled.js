@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { theme } from "styles/theme";
 
 export const List = styled.ul`
   display: grid;
@@ -33,4 +34,12 @@ export const ListItem = styled.li`
 export const ReactPaginateWrapp = styled.div`
   display: flex;
   justify-content: flex-end;
+`;
+
+export const Message = styled.div`
+  text-align: center;
+  padding-top: 200px;
+  font-size: 40px;
+  color: ${theme.colors.accent};
+  font-weight: 700;
 `;
